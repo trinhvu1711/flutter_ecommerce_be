@@ -13,4 +13,5 @@
 *  Add database "shop_smart" to postgres
 
 -> The application will be available at http://localhost:8080.
+
 -> The api document will be available at http://localhost:8080/swagger-ui/index.html#/.
