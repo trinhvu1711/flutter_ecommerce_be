@@ -10,25 +10,21 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('admin:read')")
-    @Hidden
     public String get(){
         return "GET:: admin controller";
     }
     @PostMapping
     @PreAuthorize("hasAnyAuthority('admin:create')")
-    @Hidden
     public String post(){
         return "POST:: admin controller";
     }
     @PutMapping
     @PreAuthorize("hasAnyAuthority('admin:update')")
-    @Hidden
     public String put(){
         return "PUT:: admin controller";
     }
     @DeleteMapping
     @PreAuthorize("hasAnyAuthority('admin:delete')")
-    @Hidden
     public String delete(){
         return "DELETE:: admin controller";
     }
