@@ -26,6 +26,7 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+    private String imgUrl;
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "user")
@@ -64,15 +65,18 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role='" + role + '\'' +
-                // Add other fields as needed, but avoid cyclic references
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", role=" + role +
+                ", tokens=" + tokens +
                 '}';
     }
 }

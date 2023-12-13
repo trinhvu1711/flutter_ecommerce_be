@@ -17,6 +17,8 @@ public class UserResponse {
     private String firstName;
     @JsonProperty("last_name")
     private String lastName;
+    @JsonProperty("img_url")
+    private String imgUrl;
     @JsonProperty("role")
     private String role;
 }

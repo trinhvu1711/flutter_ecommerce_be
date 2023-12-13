@@ -35,6 +35,7 @@ public class UserController {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .role(user.getRole().toString())
+                .imgUrl(user.getImgUrl())
                 .build();
         return ResponseEntity.ok(userResponse);
     }
