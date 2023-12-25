@@ -21,12 +21,14 @@ import java.time.LocalDateTime;
 public class Product {
 
     @Id
-    @GeneratedValue
     private Integer id;
-
     private String name;
+    @Column(length = 2048)
     private String description;
+    private String category;
     private double price;
+    private int quantity;
+    private String img;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

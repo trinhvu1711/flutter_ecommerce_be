@@ -28,7 +28,7 @@ public class SpringBootJwtApplication {
                     .firstname("Admin")
                     .lastname("Admin")
                     .email("admin@mail.com")
-                    .password("password")
+                    .password("")
                     .role(ADMIN)
                     .build();
             System.out.println("Admin token " + service.register(admin).getAccessToken());

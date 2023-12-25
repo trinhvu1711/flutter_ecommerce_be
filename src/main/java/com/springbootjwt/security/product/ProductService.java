@@ -17,6 +17,9 @@ public class ProductService {
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
+                .img(request.getImg())
+                .category(request.getCategory())
+                .quantity(request.getQuantity())
                 .build();
         productRepository.save(product);
     }

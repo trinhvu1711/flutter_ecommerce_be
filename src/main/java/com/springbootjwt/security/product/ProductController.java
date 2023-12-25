@@ -2,6 +2,7 @@ package com.springbootjwt.security.product;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Product>> findAllProducts() {
         return ResponseEntity.ok(productService.findAll());
     }
