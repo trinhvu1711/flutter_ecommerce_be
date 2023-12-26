@@ -31,6 +31,7 @@ public class UserController {
         var user = repository.findByEmail(userEmail)
                 .orElseThrow();
         UserResponse userResponse = UserResponse.builder()
+                .id(user.getId())
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
