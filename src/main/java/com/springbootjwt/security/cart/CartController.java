@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -17,8 +18,8 @@ public class CartController {
         return ResponseEntity.accepted().build();
     }
 
-    @GetMapping("/{user_id}")
-    public ResponseEntity<List<Cart>> findCartById(@PathVariable int user_id) {
-        return ResponseEntity.ok(cartService.findCartById(user_id));
+    @GetMapping
+    public ResponseEntity<List<Cart>> findCart(Principal connectedUser) {
+        return ResponseEntity.ok(cartService.findCart(connectedUser));
     }
 }

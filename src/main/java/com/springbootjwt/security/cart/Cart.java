@@ -25,7 +25,6 @@ public class Cart {
     @Id
     private Integer id;
     private Integer product_id;
-    private Integer user_id;
     private int quantity;
 
     @CreatedDate
