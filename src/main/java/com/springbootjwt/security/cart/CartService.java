@@ -17,6 +17,7 @@ public class CartService {
                 .id(request.getId())
                 .product_id(request.getProduct_id())
                 .quantity(request.getQuantity())
+                .removed(request.is_removed())
                 .build();
         cartRepository.save(cart);
     }
@@ -24,6 +25,14 @@ public class CartService {
         var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
         int userId = user.getId();
         return cartRepository.findByCreatedBy(userId);
+    }
+
+    public void clearCart(Principal connectedUser) {
+        var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
+        int userId = user.getId();
+        List<Cart> list =  cartRepository.findByCreatedBy(userId);
+        list.forEach(cart -> cart.setRemoved(true));
+        cartRepository.saveAll(list);
     }
 
 }

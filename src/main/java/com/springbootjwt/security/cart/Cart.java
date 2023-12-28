@@ -26,6 +26,7 @@ public class Cart {
     private Integer id;
     private Integer product_id;
     private int quantity;
+    private boolean removed;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

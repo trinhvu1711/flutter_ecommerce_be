@@ -22,4 +22,10 @@ public class CartController {
     public ResponseEntity<List<Cart>> findCart(Principal connectedUser) {
         return ResponseEntity.ok(cartService.findCart(connectedUser));
     }
+
+    @PostMapping("/clear")
+    public ResponseEntity<?> clearCart(Principal connectedUser) {
+        cartService.clearCart(connectedUser);
+        return ResponseEntity.ok().build();
+    }
 }
