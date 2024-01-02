@@ -1,4 +1,4 @@
-package com.springbootjwt.security.wishlist;
+package com.springbootjwt.security.order;
 
 import com.springbootjwt.security.user.User;
 import lombok.RequiredArgsConstructor;
@@ -9,29 +9,30 @@ import java.security.Principal;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
-public class WishlistService {
-    private final WishlistRepository wishlistRepository;
-    public void save(WishlistRequest request){
-        var wishlist = Wishlist.builder()
+public class OrderService {
+    private final OrderRepository repository;
+    public void save(OrderRequest request){
+        var order = Order.builder()
                 .id(request.getId())
-                .product_id(request.getProduct_id())
+                .shipping_fee(request.getShipping_fee())
+                .status_shipping_id(request.getStatus_shipping_id())
+                .payment_id(request.getPayment_id())
+                .location_id(request.getLocation_id())
                 .removed(request.isRemoved())
                 .build();
-        wishlistRepository.save(wishlist);
+        repository.save(order);
     }
-    public List<Wishlist> findWishlist(Principal connectedUser) {
+    public List<Order> findOrder(Principal connectedUser) {
         var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
         int userId = user.getId();
-        return wishlistRepository.findByCreatedBy(userId);
+        return repository.findByCreatedBy(userId);
     }
 
-    public void clearWishlist(Principal connectedUser) {
+    public void clearOrder(Principal connectedUser) {
         var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
         int userId = user.getId();
-        List<Wishlist> list =  wishlistRepository.findByCreatedBy(userId);
+        List<Order> list =  repository.findByCreatedBy(userId);
         list.forEach(cart -> cart.setRemoved(true));
-        wishlistRepository.saveAll(list);
+        repository.saveAll(list);
     }
-
-
 }

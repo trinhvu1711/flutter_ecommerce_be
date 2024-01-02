@@ -1,9 +1,6 @@
-package com.springbootjwt.security.cart;
+package com.springbootjwt.security.order;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,19 +12,22 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Cart {
+@Table(name = "orders")
+public class Order {
     @Id
     private Integer id;
-    private Integer product_id;
-    private int quantity;
+    private Integer location_id;
+    private Integer payment_id;
+    private Integer status_shipping_id;
+    private int shipping_fee;
     private boolean removed;
-    private Integer orderId;
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDate;
