@@ -1,6 +1,7 @@
 package com.springbootjwt.security.order;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,15 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<Order>> findOrder(Principal connectedUser) {
-        return ResponseEntity.ok(service.findOrder(connectedUser));
+        try {
+            List<Order> orders = service.findOrder(connectedUser);
+            return ResponseEntity.ok(orders);
+        } catch (Exception e) {
+            e.printStackTrace();  // Log the exception for debugging
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
     @PostMapping("/clear")
     public ResponseEntity<?> clearOrder(Principal connectedUser) {
         service.clearOrder(connectedUser);

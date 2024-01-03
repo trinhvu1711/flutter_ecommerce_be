@@ -1,9 +1,8 @@
 package com.springbootjwt.security.cart;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.springbootjwt.security.order.Order;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +26,10 @@ public class Cart {
     private Integer product_id;
     private int quantity;
     private boolean removed;
-    private Integer orderId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    @JsonBackReference
+    private Order order;
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDate;

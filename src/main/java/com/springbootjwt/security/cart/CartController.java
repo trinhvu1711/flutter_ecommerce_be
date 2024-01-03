@@ -23,10 +23,10 @@ public class CartController {
         return ResponseEntity.ok(cartService.findCart(connectedUser));
     }
 
-    @GetMapping("/{id_order}")
-    public ResponseEntity<List<Cart>> findCartOrder(Principal connectedUser, @PathVariable Integer id_order) {
-        return ResponseEntity.ok(cartService.findCartOrder(connectedUser, id_order));
-    }
+//    @GetMapping("/{id_order}")
+//    public ResponseEntity<List<Cart>> findCartOrder(Principal connectedUser, @PathVariable Integer id_order) {
+//        return ResponseEntity.ok(cartService.findCartOrder(connectedUser, id_order));
+//    }
 
     @PostMapping("/clear")
     public ResponseEntity<?> clearCart(Principal connectedUser) {
@@ -34,14 +34,14 @@ public class CartController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/addCartOrder")
-    public ResponseEntity<?> addOrder(
-            Principal connectedUser,
-            @RequestBody List<Integer> idCart,
-            @RequestParam Integer idOrder) {
-
-        cartService.addCartToOrder(connectedUser, idCart, idOrder);
-
-        return ResponseEntity.ok().build();
-    }
+//    @PostMapping("/addCartOrder")
+//    public ResponseEntity<?> addOrder(
+//            Principal connectedUser,
+//            @RequestBody List<Integer> idCart,
+//            @RequestParam Integer idOrder) {
+//
+//        cartService.addCartToOrder(connectedUser, idCart, idOrder);
+//
+//        return ResponseEntity.ok().build();
+//    }
 }

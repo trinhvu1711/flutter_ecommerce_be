@@ -1,9 +1,9 @@
 package com.springbootjwt.security.address;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.springbootjwt.security.order.Order;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +32,10 @@ public class Address {
     private String phone;
     private String address_detail;
     private boolean removed;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    @JsonBackReference
+    private Order order;
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDate;

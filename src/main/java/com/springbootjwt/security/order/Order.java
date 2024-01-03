@@ -1,5 +1,8 @@
 package com.springbootjwt.security.order;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.springbootjwt.security.address.Address;
+import com.springbootjwt.security.cart.Cart;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +15,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -23,11 +27,18 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     private Integer id;
-    private Integer location_id;
+    @OneToOne(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Address location;
     private Integer payment_id;
     private Integer status_shipping_id;
     private int shipping_fee;
+    private int total_cost;
+    private int productCost;
     private boolean removed;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Cart> carts;
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDate;

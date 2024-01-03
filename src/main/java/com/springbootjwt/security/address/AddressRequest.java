@@ -1,5 +1,6 @@
 package com.springbootjwt.security.address;
 
+import com.springbootjwt.security.order.Order;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,4 +17,6 @@ public class AddressRequest {
     private String phone;
     private String address_detail;
     private boolean removed;
+    private Order order;
+
 }

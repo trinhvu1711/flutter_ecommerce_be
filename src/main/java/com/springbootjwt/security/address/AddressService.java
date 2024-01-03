@@ -24,6 +24,7 @@ public class AddressService {
                 .city(request.getCity())
                 .ward(request.getWard())
                 .removed(request.isRemoved())
+                .order(request.getOrder())
                 .build();
         repository.save(address);
     }
