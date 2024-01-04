@@ -23,6 +23,15 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @PatchMapping("/info")
+    public ResponseEntity<?> changeUserInfo(
+            @RequestBody ChangeUserInfoRequest request,
+            Principal connectedUser
+    ){
+        service.changeUserInfo(request, connectedUser);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/info")
     public ResponseEntity<UserResponse> getUserInfo(@RequestHeader("Authorization") String jwt){
         final String userEmail;

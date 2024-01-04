@@ -26,4 +26,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         repository.save(user);
     }
+
+    public void changeUserInfo(ChangeUserInfoRequest request, Principal connectedUser) {
+        var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
+        user.setEmail(request.getEmail());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        repository.save(user);
+    }
 }
