@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -21,6 +23,23 @@ public class UserController {
     ){
         service.changePassword(request, connectedUser);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<User> users = repository.findAll();
+        List<UserResponse> userResponses = users.stream()
+                .map(user -> UserResponse.builder()
+                        .id(user.getId())
+                        .email(user.getEmail())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .role(user.getRole().toString())
+                        .imgUrl(user.getImgUrl())
+                        .build())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(userResponses);
     }
 
     @PatchMapping("/info")
