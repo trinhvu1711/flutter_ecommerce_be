@@ -2,6 +2,7 @@ package com.springbootjwt.security.review;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,12 @@ public class ReviewController {
     }
 
     @GetMapping("/{id_product}")
-    public ResponseEntity<List<Review>> findProduct(@PathVariable Integer id_product) {
+    public ResponseEntity<List<Review>> findReviewProduct(@PathVariable Integer id_product) {
         return ResponseEntity.ok(service.findReviewByProduct(id_product));
     }
-
+    @GetMapping
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<List<Review>> findAllReview() {
+        return ResponseEntity.ok(service.findAllReview());
+    }
 }

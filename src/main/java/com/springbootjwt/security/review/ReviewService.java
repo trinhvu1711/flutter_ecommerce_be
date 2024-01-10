@@ -24,4 +24,7 @@ public class ReviewService {
     public List<Review> findReviewByProduct(int product_id) {
         return repository.findByProductId(product_id);
     }
+    public List<Review> findAllReview() {
+        return repository.findAll();
+    }
 }
