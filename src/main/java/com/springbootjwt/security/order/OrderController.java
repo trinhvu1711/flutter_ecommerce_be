@@ -3,6 +3,7 @@ package com.springbootjwt.security.order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -28,6 +29,11 @@ public class OrderController {
             e.printStackTrace();  // Log the exception for debugging
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+    @GetMapping("/all")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<List<Order>> findAllOrders() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @PostMapping("/clear")

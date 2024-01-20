@@ -55,4 +55,8 @@ public class OrderService {
         list.forEach(cart -> cart.setRemoved(true));
         repository.saveAll(list);
     }
+
+    public List<Order> findAll() {
+        return repository.findAll();
+    }
 }
