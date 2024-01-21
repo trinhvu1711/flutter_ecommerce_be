@@ -2,7 +2,9 @@ package com.springbootjwt.security.user;
 
 import com.springbootjwt.security.config.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -69,4 +71,15 @@ public class UserController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @PutMapping("/forgot-password")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<String> forgotPassword (@RequestParam String email) {
+        return new ResponseEntity<>(service.forgotPassword(email), HttpStatus.OK);
+    }
+
+    @PutMapping("/set-password")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<String> setPassword (@RequestParam String email, @RequestHeader String newPassword) {
+        return new ResponseEntity<>(service.setPassword(email, newPassword), HttpStatus.OK);
+    }
 }

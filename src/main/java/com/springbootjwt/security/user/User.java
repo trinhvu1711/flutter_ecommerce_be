@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class User implements UserDetails {
     private Role role;
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
+    private boolean active;
+    private String otp;
+    private LocalDateTime otpGeneratedTime;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getUserAuthorities();
