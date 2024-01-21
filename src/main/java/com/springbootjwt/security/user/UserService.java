@@ -61,11 +61,11 @@ public class UserService {
     public String forgotPassword(String email) {
         User user = repository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
-        try {
-            emailUtil.sendSetPasswordEmail(email);
-        } catch (MessagingException e) {
-            throw new RuntimeException("Unable to set password email please try again");
-        }
+//        try {
+//            emailUtil.sendSetPasswordEmail(email);
+//        } catch (MessagingException e) {
+//            throw new RuntimeException("Unable to set password email please try again");
+//        }
         return "Please check your email to set new password";
     }
 
@@ -74,6 +74,11 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
         user.setPassword(passwordEncoder.encode(newPassword));
         repository.save(user);
+        try {
+            emailUtil.sendSetNewPasswordEmail(email, newPassword);
+        } catch (MessagingException e) {
+            throw new RuntimeException("Unable to set password email please try again");
+        }
         return "New password set successfully";
     }
 }

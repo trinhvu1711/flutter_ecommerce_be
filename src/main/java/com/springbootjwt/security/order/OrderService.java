@@ -23,6 +23,7 @@ public class OrderService {
                 .shipping_fee(request.getShipping_fee())
                 .status_shipping_id(request.getStatus_shipping_id())
                 .payment_id(request.getPayment_id())
+                .canceled(request.isCanceled())
 //                .location(request.getLocation())
                 .productCost(request.getProductCost())
                 .total_cost(request.getTotal_cost())

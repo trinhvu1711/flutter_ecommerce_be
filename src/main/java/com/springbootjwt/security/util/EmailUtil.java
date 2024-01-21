@@ -31,13 +31,22 @@ public class EmailUtil {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
         mimeMessageHelper.setTo(email);
-        mimeMessageHelper.setSubject("Verify OTP");
+        mimeMessageHelper.setSubject("Set new password");
         mimeMessageHelper.setText("""
         <div>
           <a href="http://localhost:8080/set-password?email=%s" target="_blank">click link to set password</a>
         </div>
         """.formatted(email), true);
 
+        javaMailSender.send(mimeMessage);
+    }
+
+    public void sendSetNewPasswordEmail(String email, String password) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+        mimeMessageHelper.setTo(email);
+        mimeMessageHelper.setSubject("Set new password " );
+        mimeMessageHelper.setText("new password is " + password);
         javaMailSender.send(mimeMessage);
     }
 }

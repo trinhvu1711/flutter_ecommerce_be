@@ -30,25 +30,6 @@ public class CartService {
         return cartRepository.findByCreatedBy(userId);
     }
 
-//    public List<Cart> findCartOrder(Principal connectedUser, int order_id) {
-//        var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
-//        int userId = user.getId();
-//        return cartRepository.findByOrderIdAndCreatedBy(order_id ,userId);
-//    }
-
-//    public void addCartToOrder(Principal connectedUser, List<Integer> id_cart, Integer order_id){
-//        var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
-//        int userId = user.getId();
-//        List<Cart> carts = cartRepository.findByCreatedBy(userId);
-//
-//        carts.forEach(cart -> {
-//            if (id_cart.contains(cart.getId())) {
-//                cart.setOrderId(order_id);
-//            }
-//        });
-//        cartRepository.saveAll(carts);
-//    }
-
     public void clearCart(Principal connectedUser) {
         var user = ((User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal());
         int userId = user.getId();

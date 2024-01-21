@@ -36,6 +36,7 @@ public class Order {
     private int total_cost;
     private int productCost;
     private boolean removed;
+    private boolean canceled;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Cart> carts;

@@ -21,5 +21,6 @@ public class OrderRequest {
     private int total_cost;
     private int productCost;
     private boolean removed;
+    private boolean canceled;
     private List<Cart> carts;
 }
